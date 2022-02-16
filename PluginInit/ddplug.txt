@@ -1,0 +1,16 @@
+16:25 < kurahaupo> UTF-8 encodes characters with a varying number of bytes, increasing (logarithmically) as the code point 
+                   number increases
+16:28 < kurahaupo> for code points below 128, it's just one byte; for code points between 128 and 2047 it's two bytes, between 
+                   2048 and 65535 it's 3 bytes, between 65536 and 2097151 it's 4 bytes
+16:29 < kurahaupo> senoraraton: another approach would be to just overwrite the whole of the start of the file, including the 
+                   #!/bin/bash line; then you know that the offset is 0
+16:29 < kurahaupo> (which doesn't need to be specified)
+16:31 < twkm> kurahaupo: sorry that took so long.  as an aside, the _-less nick should have been able to join.
+16:31 < kurahaupo> dd conv=nocreate,notrunc "of=${BASH_SOURCE[0]:-$0}" 
+                   <<EndOfHeader\n#!$BASH\ncounter1=$((++counter1))\ncounter2=$((counter2+=counter1))\nEndOfHeader
+16:31 < kurahaupo> senoraraton: ^^^
+16:32 < kurahaupo> senoraraton: Make sure you leave a long row of ### on the 4th line of the script
+16:34 < kurahaupo> senoraraton: to aid maintainability, I would move the counter calculations outside the block (just put 
+                   counter1=$((counter1)) counter2=$((counter2)) instead) and put that ine block inside a function immediately 
+                   after the header block, and then call it later after the counters have been updated
+l

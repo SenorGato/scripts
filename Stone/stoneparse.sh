@@ -1,0 +1,11 @@
+#Parses stone.data
+SUNRISE=$(cat stone.data | jq '.results .sunrise')
+SUNSET=$(cat stone.data | jq '.results .sunset')
+SOLARNOON=$(cat stone.data | jq '.results .solar_noon')
+DAYLENGTH=$(cat stone.data | jq '.results .day_length')
+CTBEGIN=$(cat stone.data | jq '.results .civil_twilight_begin')
+CTEND=$(cat stone.data | jq '.results .civil_twilight_end')
+ATBEGIN=$(cat stone.data | jq '.results .astronomical_twilight_begin')
+ATEND=$(cat stone.data | jq '.results .astronomical_twilight_end')
+NTBEGIN=$(cat stone.data | jq '.results .nautical_twilight_begin')
+NTEND=$(cat stone.data | jq '.results .nautical_twilight_end')

@@ -1,0 +1,32 @@
+{
+    "manifest_version": 2,
+    "name": "youtube-chap",
+    "version": "0.01",
+  
+    "description": "Presents youtube chapters in a more readable format.",
+
+    "browser_action": {
+          "browser_style": true,
+         "default_title": "Tab-Split",
+        "default_popup": "tabs.html"
+     },
+
+    "background": {
+    "scripts": ["background.js"]
+    },
+
+    "content_scripts": [
+          {
+            "matches": ["<all_urls>"],
+            "js": ["anewidea.js"]
+          }
+    ],
+    "permissions": [
+          "tabs",
+          "*://*.youtube.com/*?*",
+          "webRequest",
+          "webRequestBlocking",
+          "activetab",
+          "<all_urls>"
+    ]
+}
